@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
 from fastmcp import FastMCP
-from litcoin_mcp.config import get_settings
+from litcoin_mcp.config import get_settings, NODE_LABELS, RELATIONSHIP_TYPES
 from litcoin_mcp.services.neo4j_service import Neo4jService
 from litcoin_mcp.services.embedding_service import EmbeddingService
 from litcoin_mcp.services.semantic_search_service import SemanticSearchService
 from litcoin_mcp.tools.graph_tools import register_graph_tools
 from litcoin_mcp.tools.semantic_tools import register_semantic_tools
 
+# Create the FastMCP server
+mcp = FastMCP("litcoin", version="0.1.0")
 
 def create_server():
     settings = get_settings()
-
-    mcp = FastMCP("litcoin", version="0.1.0")
 
     neo4j_service = Neo4jService(
         settings.neo4j_uri,
@@ -28,20 +28,17 @@ def create_server():
     semantic_service = SemanticSearchService(
         neo4j_service,
         embedding_service,
-        settings.edge_vector_index,
-        settings.node_vector_index,
+        node_types=NODE_LABELS,
+        edge_types=RELATIONSHIP_TYPES
     )
 
     register_graph_tools(mcp, neo4j_service)
     register_semantic_tools(mcp, semantic_service)
 
-    return mcp
-
+create_server()
 
 def main():
-    server = create_server()
-    server.run()
-
+    mcp.run()
 
 if __name__ == "__main__":
     main()
