@@ -1,0 +1,22 @@
+[project]
+name = "litcoin-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "hyi", email = "hongyi@renci.org" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp==2.14.5",
+    "httpx>=0.28.1",
+    "neo4j>=6.1.0",
+    "openai>=2.24.0",
+]
+
+[project.scripts]
+litcoin-mcp = "litcoin_mcp:main"
+
+[build-system]
+requires = ["uv_build>=0.9.5,<0.10.0"]
+build-backend = "uv_build"
