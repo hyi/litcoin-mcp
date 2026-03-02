@@ -61,7 +61,7 @@ def register_graph_tools(mcp, neo4j_service):
             props = record["properties"] or {}
             props.pop("embedding", None)
             props.pop("semantic_text", None)
-            
+
             cleaned_results.append({
                 "predicate": record["predicate"],
                 "properties": props

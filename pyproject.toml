@@ -1,12 +1,13 @@
 [project]
 name = "litcoin-mcp"
 version = "0.1.0"
-description = "LitCoin MCP Server"
+description = "LitCoin MCP Server - Semantic + Structural Knowledge Graph query for AI agents"
 readme = "README.md"
 authors = [
-    { name = "hyi", email = "hongyi@renci.org" }
+    { name = "Hong Yi" }
 ]
 requires-python = ">=3.10"
+keywords = ["mcp", "biomedical", "semantic", "knowledge-graph", "litcoin"]
 dependencies = [
     "fastmcp==2.14.5",
     "neo4j>=6.1.0",
